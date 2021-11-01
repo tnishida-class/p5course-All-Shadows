@@ -2,15 +2,27 @@
 let count;
 let cycle;
 
-function setup(){
+
+function setup() {
   createCanvas(200, 200);
-  count = 0;
-  cycle = 100;
+  count=0;
+  cycle=100;
+  noStroke(0);
+  fill(252, 3, 3);
 }
 
-function draw(){
-  background(160, 192, 255);
-  count = (count + 1) % cycle;
-  // BLANK[1]
-  ellipse(width / 2, height / 2, size);
+function draw() {
+  background(252, 3, 240);
+
+  if(keyIsPressed){
+     count=(count+2.5) % cycle;
+     }
+   else{
+  count=(count+1.5)%cycle;
+   }
+
+  if(count<50);{
+  ellipse(width/2, height/2, count);
+
+}
 }
