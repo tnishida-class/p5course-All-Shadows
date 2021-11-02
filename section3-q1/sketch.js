@@ -15,10 +15,10 @@ function draw() {
   background(252, 3, 240);
 
   if(keyIsPressed){
-     count=(count+2.5) % cycle;
+     count=(count+4) % cycle;
      }
    else{
-  count=(count+1.5)%cycle;
+  count=(count+2.5)%cycle;
    }
 
   if(count<50);{
