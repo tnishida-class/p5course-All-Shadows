@@ -4,13 +4,13 @@ function setup() {
 
 function draw() {
   background(0);
-  strokeWeight(4);
-  fill(178, 100, 162);
-  triangle(12,120,116,120,116,10);
-  fill(94, 185, 84);
-  triangle(0,108,106,108,106,0);
+  strokeWeight(6);
+  fill(198, 3, 252);
+  triangle(0,0,130,0,65,70);
+  fill(252, 3, 94);
+  triangle(0,130,130,130,65,65);
   fill(255);
-  textSize(32);
-  textFont("serif");
-  text("46", 68, 100);
+  textSize(12);
+  textFont("30");
+  text("❤︎ Mac is the best ❤︎", 11, 70);
 }
