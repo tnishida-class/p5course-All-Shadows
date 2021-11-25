@@ -3,13 +3,16 @@
 // 練習問題：何も操作しなくてもボールが湧いてくる機能を追加しよう
 
 let balls;
+let count;
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
   balls = [];
-}
+  count = 0;
+  }
 
 function draw(){
+  count++;
   background(160, 192, 255);
   for(let i = 0; i < balls.length; i++){
     let b = balls[i];
@@ -17,13 +20,18 @@ function draw(){
     b.x += b.vx;
     b.y += b.vy;
   }
+
+if (count%50==0){
+  const b = { x: width/2, y: height/2, size: 20, vx: random(-1,1), vy: random(2)-1};
+  balls.push(b);
+}
 }
 
 function mouseDragged(){
   const dx = mouseX - pmouseX;
   const dy = mouseY - pmouseY;
   if(mag(dx, dy) > 5){
-    const b = { x: mouseX, y: mouseY, size: 20, vx: dx, vy: dy };
+    const b = { x: mouseX, y: mouseY, size: random(20,30), vx: dx, vy: dy };
     balls.push(b);
   }
 }
