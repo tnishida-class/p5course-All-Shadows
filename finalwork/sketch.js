@@ -1,56 +1,51 @@
-// 最終課題を制作しよう
-
-var angle = 0;
-var slider;
+var numOfglobs
+var img;
 
 function setup() {
-  createCanvas(400, 400);
-  slider = createSlider(0, TWO_PI, PI / 4, 0.01);
-  textSize(50)
+  createCanvas(600, 600);
+  angleMode(DEGREES);
+  numOfglobs = 14
+  textSize(40)
+  img=loadImage('ツイッターイメージ.png');
 }
 
 function draw() {
-  background(51);
-  angle = slider.value();
-  stroke(50, 168, 125);
-  translate(200, height);
-  branch(120);
-}
+  background(0);
+  noStroke();
 
-function branch(len) {
-  line(0, 0, 0, -len);
-  translate(0, -len);
-  if (len > 3) {
+image(img,110,90,400);
+
+
+  translate(width / 2, height / 2);
+
+  rotate(frameCount / 10);
+
+  for (let i = 0; i < numOfglobs; ++i) {
     push();
-    rotate(angle);
-    branch(len * 0.63);
+      var angle = 360 / numOfglobs * i
+      rotate(  angle);
+
+      translate(int(width / 3), 0);
+
+    push()
+    rotate(250)
+fill(3, 252, 111)
+       text("----🌐-----", 0, 0)
+
+    pop()
     pop();
-    push();
-    rotate(-angle);
-    branch(len * 0.63);
-    pop();
-  }
-
-  line(0, 0, 0, -len * 0.67);
-}
-
-
-  for(let i = 0; i < 12; i++){
-    let theta = TWO_PI * i / 12;
-    let x = 100 + cos(theta) * 50;
-    let y = 100 + sin(theta) * 50;
-    star(x, y, 10);
   }
 }
 
-// ヒント：section5-2 にある star 関数をここにコピーして、 draw 内で ellipse の代わりに使おう
-function star(cx, cy, r){
-  beginShape();
-  for(var i = 0; i < 5; i++){
-    let theta = TWO_PI * i * 2 / 5 - HALF_PI;
-    let x = cx + cos(theta) * r;
-    let y = cy + sin(theta) * r;
-    vertex(x,y);
+noFill();
+for(let i = 0; i < 10; i++){
+  let r = i*10+10;
+  if(i<5){
+    stroke(0,0,255);
   }
-  endShape(CLOSE);
-}
+  else {
+    stroke(255,0,0);
+    }
+    ellipse(50,50,r);
+    // BLANK[1]
+  }
