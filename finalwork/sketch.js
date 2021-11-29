@@ -1,5 +1,7 @@
 var numOfglobs
 var img;
+let emoji;
+let count;
 
 function setup() {
   createCanvas(600, 600);
@@ -7,14 +9,18 @@ function setup() {
   numOfglobs = 14
   textSize(40)
   img=loadImage('ツイッターイメージ.png');
+  emoji = [];
+  count = 0;
 }
 
 function draw() {
+  count++;
   background(0);
+    // ellipse(width/2+10,height/2,400);
   noStroke();
 
-image(img,110,90,400);
 
+image(img,110,90,400);
 
   translate(width / 2, height / 2);
 
@@ -32,20 +38,48 @@ image(img,110,90,400);
 fill(3, 252, 111)
        text("----🌐-----", 0, 0)
 
-    pop()
     pop();
-  }
+    pop();
+
+
+
 }
 
-noFill();
-for(let i = 0; i < 10; i++){
-  let r = i*10+10;
-  if(i<5){
-    stroke(0,0,255);
-  }
-  else {
-    stroke(255,0,0);
+for(let i = 0; i < emoji.length; i++){
+  let b = emoji[i];
+  rotate(-(frameCount / 10));
+  push();
+
+    textSize(30);
+    text(b.text,b.x,b.y);
+  b.x += b.vx;
+  b.y += b.vy;
+  pop();
+}
+  for(let i = 0; i < emoji.length; i++){
+    let b = emoji[i];
+    if(b.x>width || b.x<0-width/2 || b.y> height || b.y<0-width/2){
+      emoji.splice(i,1);
     }
-    ellipse(50,50,r);
-    // BLANK[1]
   }
+
+  }
+
+function mouseDragged(){
+  if(mouseX >110 && mouseX < 510 && mouseY>100 && mouseY<500){
+    rotate(-frameCount / 5);
+    const dx = mouseX - pmouseX;
+    const dy = mouseY - pmouseY;
+    if(mag(dx, dy) > 5 && mag(dx, dy) <15){
+      const b = { x: mouseX-width/2, y: mouseY-height/2, size: random(20,30), vx: dx/5, vy: dy/5 ,text: "❤️"};
+      emoji.push(b);
+    }else if(mag(dx, dy) >= 15 && mag(dx, dy) <25){
+      const b = { x: mouseX-width/2, y: mouseY-height/2, size: random(20,30), vx: dx/5, vy: dy/5 ,text: "👍"};
+      emoji.push(b);
+    }else if(mag(dx, dy) >= 25){
+      const b = { x: mouseX-width/2, y: mouseY-height/2, size: random(20,30), vx: dx/5, vy: dy/5 ,text: "💬"};
+      emoji.push(b);
+    }
+  }
+
+}
